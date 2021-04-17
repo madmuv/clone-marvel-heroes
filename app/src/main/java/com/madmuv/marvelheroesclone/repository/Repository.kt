@@ -1,0 +1,3 @@
+package com.madmuv.marvelheroesclone.repository
+
+interface Repository
