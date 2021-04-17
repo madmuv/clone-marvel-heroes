@@ -1,0 +1,108 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+    id 'kotlin-kapt'
+}
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.madmuv.marvelheroesclone"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // android supports
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
+    implementation "androidx.room:room-runtime:$versions.roomVersion"
+    kapt "androidx.room:room-compiler:$versions.roomVersion"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+
+    // binding
+    implementation "com.github.skydoves:bindables:$versions.bindablesVersion"
+
+    // koin
+    implementation "org.koin:koin-android:$versions.koinVersion"
+    implementation "org.koin:koin-android-scope:$versions.koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$versions.koinVersion"
+
+    // network
+    implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.mockWebServerVersion"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    // transformation
+    implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
+
+    // whatIf
+    implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
+
+    // bundler
+    implementation "com.github.skydoves:bundler:$versions.bundlerVersion"
+
+    // android veil
+    implementation "com.github.skydoves:androidveil:$versions.androidVeilVersion"
+
+    // discrete scrollview
+    implementation "com.yarolegovich:discrete-scrollview:$versions.discreteScrollview"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+}
+
+apply from: '../spotless.gradle'
